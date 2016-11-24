@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy, :show]
+  before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
@@ -21,7 +21,6 @@ class ListsController < ApplicationController
     set_up_pool(@list)
     @picked_person = @pool.sample
     @picked_person.update_attribute(:available, true)
-    ap @picked_person
     redirect_to list_path(id: @list.id, person: @picked_person)
   end
 
