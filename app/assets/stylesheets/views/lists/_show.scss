@@ -2,9 +2,13 @@
   @include container(88em);
   padding: 3em 1em;
 
-  header {
-    margin-bottom: 3em;
-    padding-bottom: 1.5em;
+  .as-red {
+    color: $red;
+  }
+
+  .list__show--header {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid $clouds;
 
     h4 {
@@ -12,42 +16,80 @@
     }
   }
 
-  section {
-    @include span(8);
-    text-align: center;
-
-    .pick {
-      margin-bottom: 3rem;
-    }
-  }
-
-  aside {
+  .list__show--sidebar {
     @include span(3);
 
-    input {
+    li {
+
+      i {
+        margin-left: 0.5rem;
+        color: $red;
+      }
+
+      & + li {
+        margin-top: 1rem;
+      }
+    }
+
+    input[type="text"] {
       width: 100%;
       background-color: $clouds;
-      border: 0;
+    }
+
+    .submit {
+      width: 100%;
     }
   }
 
-  @media only screen and (max-width: 924px) {
-    section {
-      @include span(12);
+  .list__show--content {
+    @include span(8);
+    text-align: center;
+    padding-bottom: 3em;
+
+    .btn.pick {
       margin-bottom: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid $clouds;
     }
 
-    aside {
-      @include span(12);
+    .infos--description {
+      margin-bottom: 1.5rem;
+    }
+
+    .infos--share {
+      font-weight: 700;
+    }
+
+    .infos--result {
+      @include container(80%);
+      margin-bottom: 1.5rem;
+      padding: 1.5em 1em;
+      background-color: $clouds;
+
+      h5 {
+        margin-bottom: 1.5rem;
+      }
+
+      img {
+        @include container(15em);
+        display: block;
+      }
     }
   }
-}
 
-.list__show--pool-infos {
-  margin-bottom: 3rem;
-  span {
-    color: $red;
+  @media only screen and (max-width: 900px) {
+    .list__show--sidebar {
+      @include span(12);
+    }
+
+    .list__show--content {
+      @include span(12);
+
+      .infos--result {
+        @include container(95%);
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
   }
 }

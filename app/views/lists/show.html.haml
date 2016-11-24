@@ -1,28 +1,32 @@
 .list__show
-  %header
+  %header.list__show--header
     %h1= @list.name
     - if @list.description
       %h4= @list.description
     - if @list.price_cap
       %h4= "Price cap: #{@list.price_cap}"
-      
-  %section
+
+  %section.list__show--content
     - if @list.people.count < 3
-      %h5 There are not so many people in this list. Try adding more...
+      %p.infos--add-more There are not so many people in this list. Try adding more...
     - else
       - if @pool.count > 0
-        %p.list__show--pool-infos= raw "There are <span>#{@pool.count}</span> #{'person'.pluralize(@pool.count)} left in this pool."
+        %p.infos--description= raw "There are <span class='as-red'>#{@pool.count}</span> #{'person'.pluralize(@pool.count)} left in this pool."
         = link_to "Pick Someone!", list_pick_random_person_path(@list), class: 'btn pick'
-
         - unless !@picked_person
-          %h4= "Congrats! You got #{@picked_person.name}. Remember, the price cap is at #{@list.price_cap}."
+          .infos--result
+            %h4= raw "You got <span class='as-red'>#{@picked_person.name}</span>."
+            - if @list.price_cap
+              %h5= "Remember, the price cap is set at #{@list.price_cap}."
+            = image_tag('merry-xmas.jpg')
+      - else
+        %p.infos--add-more No one left in this pool. :(
 
-    %p.list__show--link-others
-      Link others to this list:
-      %a{href: request.url}
-        = request.url
+    %h5.infos--share Share this link with other members in this list:
+    %a.infos--share-url{href: request.original_url.split('?').first}
+      = request.original_url.split('?').first
 
-  %aside
+  %aside.list__show--sidebar
     %h3 People
     - if @list.people.empty?
       %p No one in this list yet.
@@ -30,22 +34,3 @@
       %ul
         = render @list.people.order("id")
     = render 'people/new', list: @list
-
--# %p#notice= notice
-
--#   = render @list.people.order("id")
-
-
--# - if @pool.count > 0
--#   = "There are #{@pool.count} #{'person'.pluralize(@pool.count)} left in this pool."
--#   = link_to "Pick Someone!", list_pick_random_person_path(@list)
--#
--#   - unless !@picked_person
--#     %h4= "Congrats! You got #{@picked_person.name}. Remember, the price cap is at #{@list.price_cap}."
--# - else
--#   No one available in this pool.
-
-
--# = render 'people/new', list: @list
-
--# = link_to 'Edit', edit_list_path(@list)

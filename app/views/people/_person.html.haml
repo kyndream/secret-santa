@@ -1,3 +1,3 @@
 %li
   = person.name
-  = link_to 'Delete', [person.list, person], method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to (fa_icon "trash"), [person.list, person], method: :delete, data: { confirm: 'Are you sure?' }
