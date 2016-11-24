@@ -1,0 +1,5 @@
+= form_for([@list, Person.new], remote: true) do |f|
+  Name:
+  %br
+  = f.text_field :name
+  = f.submit "Add Person"

@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @list.name
+%p
+  %strong Description:
+  = @list.description
+%p
+  %strong Price cap:
+  = @list.price_cap
+
+%ul
+  = render @list.people
+
+= render 'people/new', list: @list
+
+= link_to 'Edit', edit_list_path(@list)
+|
+\#{link_to 'Back', lists_path}
