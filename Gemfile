@@ -15,7 +15,11 @@ gem 'uglifier', '>= 1.3.0'
 
 # Front-end
 gem 'haml'
+gem 'normalize-rails'
 gem 'sass-rails', '~> 5.0'
+gem 'compass-rails'
+gem 'susy'
+gem 'modular-scale'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'

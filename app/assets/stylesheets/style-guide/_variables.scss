@@ -1,0 +1,30 @@
+$blackish: #333;
+$clouds: #ecf0f1;
+$green-sea: #16a085;
+$gray: #7f8c8d;
+
+// Typography
+$rhythm-unit: "em";
+$base-font-size: 16px;
+$base-small-font-size: 15px;
+$base-line-height: 24px;
+
+$ms-base: $base-font-size;
+$ms-small-base: $base-small-font-size;
+
+$ms-ratio: $fifth;
+$ms-small-ratio: $fourth;
+
+$ms-up-3: ms(4);
+$ms-up-2: ms(3);
+$ms-up-1: ms(2);
+$ms-up:   ms(1);
+$ms-0: $ms-base;
+$ms-down: ms(-1);
+
+$ms-small-up-3: ms(4, $ms-base, $ms-small-ratio);
+$ms-small-up-2: ms(3, $ms-base, $ms-small-ratio);
+$ms-small-up-1: ms(2, $ms-base, $ms-small-ratio);
+$ms-small-up:   ms(1, $ms-base, $ms-small-ratio);
+$ms-0: $ms-base;
+$ms-small-down:  ms(-1);

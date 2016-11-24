@@ -1,0 +1,26 @@
+// Buttons
+%button {
+  padding: 0.75rem;
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  transition: all 400ms;
+  font-size: 1rem;
+}
+
+.btn, input[type="submit"] {
+  @extend %button;
+
+  &.submit {
+    @include container(12rem);
+    margin-top: 1.5rem;
+    display: block;
+    background-color: $gray;
+    color: white;
+    border-radius: 0.75rem;
+
+    &:hover {
+      background-color: scale_color($gray, $lightness: -20%);
+    }
+  }
+}
