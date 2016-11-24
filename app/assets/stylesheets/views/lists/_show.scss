@@ -1,0 +1,53 @@
+.list__show {
+  @include container(88em);
+  padding: 3em 1em;
+
+  header {
+    margin-bottom: 3em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid $clouds;
+
+    h4 {
+      line-height: 1.5em;
+    }
+  }
+
+  section {
+    @include span(8);
+    text-align: center;
+
+    .pick {
+      margin-bottom: 3rem;
+    }
+  }
+
+  aside {
+    @include span(3);
+
+    input {
+      width: 100%;
+      background-color: $clouds;
+      border: 0;
+    }
+  }
+
+  @media only screen and (max-width: 924px) {
+    section {
+      @include span(12);
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid $clouds;
+    }
+
+    aside {
+      @include span(12);
+    }
+  }
+}
+
+.list__show--pool-infos {
+  margin-bottom: 3rem;
+  span {
+    color: $red;
+  }
+}

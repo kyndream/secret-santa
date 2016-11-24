@@ -23,4 +23,16 @@
       background-color: scale_color($gray, $lightness: -20%);
     }
   }
+
+  &.pick {
+    @include container(14rem);
+    display: block;
+    background-color: $emerald;
+    color: white;
+    border-radius: 0.75rem;
+
+    &:hover {
+      background-color: scale_color($emerald, $lightness: -20%);
+    }
+  }
 }

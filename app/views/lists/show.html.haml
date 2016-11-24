@@ -1,30 +1,51 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @list.name
-%p
-  %strong Description:
-  = @list.description
-%p
-  %strong Price cap:
-  = @list.price_cap
+.list__show
+  %header
+    %h1= @list.name
+    - if @list.description
+      %h4= @list.description
+    - if @list.price_cap
+      %h4= "Price cap: #{@list.price_cap}"
+      
+  %section
+    - if @list.people.count < 3
+      %h5 There are not so many people in this list. Try adding more...
+    - else
+      - if @pool.count > 0
+        %p.list__show--pool-infos= raw "There are <span>#{@pool.count}</span> #{'person'.pluralize(@pool.count)} left in this pool."
+        = link_to "Pick Someone!", list_pick_random_person_path(@list), class: 'btn pick'
 
-%ul
-  = render @list.people.order("id")
+        - unless !@picked_person
+          %h4= "Congrats! You got #{@picked_person.name}. Remember, the price cap is at #{@list.price_cap}."
+
+    %p.list__show--link-others
+      Link others to this list:
+      %a{href: request.url}
+        = request.url
+
+  %aside
+    %h3 People
+    - if @list.people.empty?
+      %p No one in this list yet.
+    - else
+      %ul
+        = render @list.people.order("id")
+    = render 'people/new', list: @list
+
+-# %p#notice= notice
+
+-#   = render @list.people.order("id")
 
 
-- if @pool.count > 0
-  = "There are #{@pool.count} #{'person'.pluralize(@pool.count)} left in this pool."
-  = link_to "Pick Someone!", list_pick_random_person_path(@list)
+-# - if @pool.count > 0
+-#   = "There are #{@pool.count} #{'person'.pluralize(@pool.count)} left in this pool."
+-#   = link_to "Pick Someone!", list_pick_random_person_path(@list)
+-#
+-#   - unless !@picked_person
+-#     %h4= "Congrats! You got #{@picked_person.name}. Remember, the price cap is at #{@list.price_cap}."
+-# - else
+-#   No one available in this pool.
 
-  - unless !@picked_person
-    %h4= "Congrats! You got #{@picked_person.name}. Remember, the price cap is at #{@list.price_cap}."
-- else
-  No one available in this pool.
 
+-# = render 'people/new', list: @list
 
-= render 'people/new', list: @list
-
-= link_to 'Edit', edit_list_path(@list)
-|
-\#{link_to 'Back', lists_path}
+-# = link_to 'Edit', edit_list_path(@list)
