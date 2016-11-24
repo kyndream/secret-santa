@@ -11,7 +11,7 @@
       %p.infos--add-more There are not so many people in this list. Try adding more...
     - else
       - if @pool.count > 0
-        %p.infos--description= raw "There are <span class='as-red'>#{@pool.count}</span> #{'person'.pluralize(@pool.count)} left in this pool."
+        %p.infos--description= raw "<span class='as-red'>#{@pool.count - 1}</span> #{'person'.pluralize(@pool.count - 1)} left in this pool."
         = link_to "Pick Someone!", list_pick_random_person_path(@list), class: 'btn pick'
         - unless !@picked_person
           .infos--result

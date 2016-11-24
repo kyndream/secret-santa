@@ -19,8 +19,12 @@ class ListsController < ApplicationController
   def pick_random_person
     @list = List.find(params[:list_id])
     set_up_pool(@list)
-    @picked_person = @pool.sample
-    @picked_person.update_attribute(:available, true)
+    if @pool.count == 1
+      @picked_person = @pool.first
+    else
+      @picked_person = @pool.sample
+      @picked_person.update_attribute(:available, true)
+    end
     redirect_to list_path(id: @list.id, person: @picked_person)
   end
 
