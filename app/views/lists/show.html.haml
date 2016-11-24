@@ -10,7 +10,19 @@
   = @list.price_cap
 
 %ul
-  = render @list.people
+  = render @list.people.order("id")
+
+%h4= "Congrats! You got #{@picked_person.name}. Remember, the price cap is at #{@list.price_cap}."
+
+- if @pool.count > 0
+  = "There are #{@pool.count} #{'person'.pluralize(@pool.count)} left in this pool."
+  = link_to "Pick Someone!", list_pick_random_person_path(@list)
+
+  - unless !@picked_person
+    = @picked_person.name
+- else
+  No one available in this pool.
+
 
 = render 'people/new', list: @list
 

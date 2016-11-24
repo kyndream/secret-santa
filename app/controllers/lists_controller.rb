@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :update, :destroy, :show]
 
   # GET /lists
   # GET /lists.json
@@ -10,6 +10,19 @@ class ListsController < ApplicationController
   # GET /lists/1
   # GET /lists/1.json
   def show
+    set_up_pool(@list)
+    if params[:person]
+      @picked_person = Person.find(params[:person])
+    end
+  end
+
+  def pick_random_person
+    @list = List.find(params[:list_id])
+    set_up_pool(@list)
+    @picked_person = @pool.sample
+    @picked_person.update_attribute(:available, true)
+    ap @picked_person
+    redirect_to list_path(id: @list.id, person: @picked_person)
   end
 
   # GET /lists/new
@@ -65,6 +78,17 @@ class ListsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_list
       @list = List.find(params[:id])
+    end
+
+    def set_up_pool(list)
+      @list = list
+      @people = @list.people
+      @pool = []
+      @people.each do |person|
+        if !person.available
+          @pool << person
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
