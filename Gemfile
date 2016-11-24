@@ -1,6 +1,8 @@
 ruby '2.3.0'
 source 'https://rubygems.org'
 
+# web server
+gem 'passenger'
 
 # DB
 gem 'pg'
