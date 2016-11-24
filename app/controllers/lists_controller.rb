@@ -23,8 +23,9 @@ class ListsController < ApplicationController
       @picked_person = @pool.first
     else
       @picked_person = @pool.sample
-      @picked_person.update_attribute(:available, true)
+      # @picked_person.update_attribute(:available, true)
     end
+    @picked_person.update_attribute(:available, true)
     redirect_to list_path(id: @list.id, person: @picked_person)
   end
 

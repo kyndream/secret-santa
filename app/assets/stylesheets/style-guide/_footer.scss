@@ -1,0 +1,6 @@
+footer {
+  @include container(88em);
+  padding: 3em 1em;
+  text-align: center;
+  border-top: 1px solid $clouds;
+}
